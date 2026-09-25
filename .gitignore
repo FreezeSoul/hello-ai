@@ -15,3 +15,20 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.vscode
+.env
+.env.local
+.env.*.local
+.meilisearch-keys.json
+data/local-blocklists/
+.vitepress/cache
+.agents/*
+.playwright-cli/
+
+# Deployment scripts (private)
+scripts/deploy-*.sh
+REFACTOR_PLAN/*
+.omx/
+.opencode/
+# Keep local planning drafts ignored, except reviewed deliverables.
+plans/*
+!plans/EXPLORE_DISCOVERY_UX_OPTIMIZATION.md

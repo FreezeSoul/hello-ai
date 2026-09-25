@@ -1,142 +1,243 @@
-# Hello-AI
+<div align="center">
+  <img src="./public/assets/img/logo.png" alt="Hello-AI Logo" width="120" height="120" />
+  <h1>Hello-AI</h1>
+  <p>An intelligent, auto-updating directory of high-quality open-source projects.</p>
+</div>
 
-> English  |  **[中文文档](./README-zh.md)**
+<div align="center">
+
+[![Docs](https://img.shields.io/badge/docs-hello--ai.anzz.top-4A90E2?logo=gitbook&logoColor=white)](https://hello-ai.anzz.top)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/xxxily/hello-ai?style=social)](https://github.com/xxxily/hello-ai)
+[![Node.js](https://img.shields.io/badge/node-%3E%3D18.x-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+
+</div>
+
+<div align="center">  English | <b><a href="./README-zh.md">中文文档</a></b>
+</div>
+---
+
+## Explore the Interface
+
+### [Open Hello-AI Explore →](https://hello-ai.anzz.site/explore/)
+
+[![Hello-AI Explore discovery dashboard](./assets/screenshots/explore-overview.png)](https://hello-ai.anzz.site/explore/)
+
+| Browse and filter AI projects | Inspect project details and signals |
+| :---: | :---: |
+| [![Hello-AI Explore project list](./assets/screenshots/explore-project-list.png)](https://hello-ai.anzz.site/explore/) | [![Hello-AI Explore project details](./assets/screenshots/explore-project-detail.png)](https://hello-ai.anzz.site/explore/) |
+
+<!-- STATS_START -->
+## 📊 Project Statistics
+
+*Summary of high-quality open-source AI projects collected from the internet:*
+
+- 📁 **Total Collected**: 25133 projects
+- ⚡ **Active Shown**: 13869 projects (updated within the last 6 months)
+- 🏷️ **Categories (Active / Total)**:
+  - 🔥 Trending: 30 / 30
+  - 🧠 Foundation Models: 169 / 636
+  - 🤖 Agents & Orchestration: 2262 / 2772
+  - 🔍 RAG & Data Engineering: 565 / 848
+  - ☁️ Infrastructure & Deployment: 1223 / 1886
+  - 🔧 Fine-tuning & Training: 421 / 1029
+  - 👁️ Multimodal (Audio/Video): 1115 / 3280
+  - 🛠️ Developer Tools & SDKs: 2901 / 4499
+  - 🎨 AI Applications: 1399 / 2244
+  - 📚 Learning Resources: 1529 / 4684
+  - 💻 Desktop & OS Apps: 1333 / 1475
+  - 🦾 Robotics & IoT: 626 / 1275
+  - 💼 Business & Finance: 356 / 557
+- 📅 **Last Updated**: 2026-09-25
+<!-- STATS_END -->
 
 ## Overview
 
-Aiming to connect oneself and others to the vast world of AI, this project was created with just that intention in mind.
+**Hello-AI** is an **intelligent, AI-driven navigation hub for open-source AI projects.**
 
-As one of the forerunners in the advent of AI, during the peak popularity of [ChatGPT](https://chat.openai.com/), this initiative provided a series of public AI services, helping some people connect to the world of AI. Time flies, and nowadays, AI is everywhere, and the public services offered have stopped for various reasons. However, the original intention of this project remains. If you're tired of dealing with domestic services that are just shells, sporadically operational, or vanish without a trace, this site may still offer you some assistance.
+In an era of rapid AI evolution, developers often face "information overload" when navigating the vast sea of GitHub repositories. Hello-AI leverages **AI Agent automation** to discover, evaluate, and organize the most high-quality AI resources from the global open-source community.
 
-The project provides AI-related resources, including but not limited to:
+### ✨ Key Features
 
-- [ChatGPT in Chinese: A Guide](./home/chatgptPrompts.md)
-- [Collection of Open Source ChatGPT Projects](./home/awesome-open-gpt.md)
-- [A Compilation of Global AI Websites](./home/navigation.md)
-- Trending AI News
-- AI Information Exchange Groups, etc.
+- 🤖 **Autonomous Smart Maintenance**: Unlike traditional link directories maintained manually, Hello-AI uses AI agents for 24/7 autonomous project discovery, quality assessment, and categorization. It's "AI discovering AI."
+- 🗺️ **Evolutionary Landscape Map**: Deep coverage across foundational models, Agent frameworks, RAG, infrastructure, multimodal apps, and dev tools—organized precisely and intuitively.
+- 🔄 **Dynamic Activity Tracking**: The system automatically purges stale projects and dynamically updates Star counts and health status, ensuring you only see the most relevant and active repositories.
+- ⚡ **Instant Value Insights**: AI automatically generates concise summaries and use-cases for every repository, allowing you to bypass manual research and identify the right tools in seconds.
 
-The project is maintained during business hours, so there might be omissions, errors, or suboptimal experiences, but the author will strive to continually optimize and improve.
+This is your shortcut to exploring the boundaries of AI and finding the ultimate productivity tools.
 
-If you have any AI-related information to provide or have suggestions or feedback, please submit an [issue](https://github.com/xxxily/hello-ai/issues).
+## 🏗️ Architecture & Execution Logic
 
-## Latest Free AI Service Website Recommendations
+This project operates entirely through the collaboration of automated scripts and Large Language Models. Below is a visual flowchart demonstrating the complete data lifecycle—from discovery to frontend rendering:
 
-Considering that domestic AI services like [ChatGPT](https://chat.openai.com/) and [Gemini](https://gemini.google.com) are not always stable, compliant, or genuine, this site prioritizes AI services offered by foreign service providers.
+```mermaid
+graph TD
+    classDef default fill:#f9f9f9,stroke:#e0e0e0,stroke-width:1px;
+    classDef database fill:#e1f5fe,stroke:#4fc3f7,stroke-width:2px;
+    classDef ai fill:#fff3e0,stroke:#ffb74d,stroke-width:2px;
+    classDef process fill:#e8f5e9,stroke:#81c784,stroke-width:2px;
+    
+    subgraph Discovery [1. Auto-Evolving Discovery Layer]
+        T[(topics.json<br/>Knowledge Pool)]:::database -->|Provide un-explored topics| Fetch[GitHub Crawl Script]:::process
+        Fetch -.->|Inject newly found topics| T
+        Fetch -->|Enqueue High-Star Projects| Q[(pending-projects.json<br/>Queue)]:::database
+    end
 
-For the websites listed below, if access is restricted, please refer to the contents of [VPN Tools](./home/airport.md).
+    subgraph Evaluation [2. AI Batch Evaluation Layer]
+        Q -->|Pop N Batch Projects| P[Combined AI Prompt]:::process
+        DB[(projects.json<br/>Core Database)]:::database -.->|Inject dynamic categories| P
+        P --> LLM((LLM AI Engine<br/>Tag / Summarize / Rate)):::ai
+        LLM --> Condition{AI Decides}
+    end
 
-### [deepseek.com](https://chat.deepseek.com/) Rating: ⭐⭐⭐⭐⭐
+    subgraph Storage [3. Isolation Storage Layer]
+        Condition -->|Rejected or Poor Quality| R[(rejected-projects/<br/>Audit Trash)]:::database
+        Condition -->|Valuable AI Projects| DB
+    end
 
-Reasons for Recommendation:
+    subgraph Frontend [4. Automated View Layer]
+        DB -->|Dynamically Reflect Categories| Vite[VitePress Nav & Sidebar]:::process
+        DB -->|Group by Subcategory| Gen[generate-docs.js]:::process
+        Vite --> Site([🌍 Hello-AI Website])
+        Gen -->|Generate Markdown Pages| Site
+    end
+```
 
-- Currently the strongest free open-source text generation model
-- Became a highly sought-after model both domestically and internationally
-- Intelligence level rivals or even surpasses GPT's latest models
-- Forced many AI companies to rush to release stronger AI models
-- Compelled many AI companies to reduce prices or offer better free services
-- Numerous manufacturers and platforms actively deploy deepseek's open-source models
+Its core mechanism, data flow, and system architecture details are as follows:
 
-Usage Conditions:
+### 1. Dynamic Auto-Evolving Discovery Layer
+- **Topic Mining:** Using a predefined seed list in `data/topics.json`, the crawler iterates over the GitHub API, prioritizing the "least recently explored" topics to search for new repositories with `Stars >= 500`.
+- **Knowledge Base Growth:** When unseen topics are detected from newly fetched projects, the system automatically registers them into `topics.json` as 'Level 2' (secondary exploration targets).
+- **Pending Queue:** All discovered new repositories flow directly into `data/pending-projects.json` for validation.
 
-- Directly visit the official website or download deepseek client
+### 2. Local/Cloud AI Batch Evaluation Engine
+- **Concurrent Batch Processing:** The core script `discover-and-evaluate.js` pops a configured number of items (via `EVALUATE_BATCH_SIZE`) from the pending pool and creates a combined prompt for the LLM. This batch design drastically reduces API frequency limits and reuses token context.
+- **Dynamic Category Routing:** The system never "hard-codes" categories. Upon each evaluation, it dynamically reads the valid categories and subcategories from `data/projects.json` and instructs the AI to route projects accordingly.
+- **Tagging & Auditing:** The AI automatically extracts tags, generates optimal Chinese descriptions, and assigns the project to the most suitable subcategory. If an item is deemed unworthy or un-categorizable by the AI, it gets discarded into an isolation audit log (`data/rejected-projects/`).
+- **Objective Trending List:** A daily objective calculation forces the recalculation of the top 30 highest-star, recently updated projects, automatically placing them into the `🔥 Trending` category, overriding AI randomness.
 
-Limitations:
+### 3. Automated Frontend Rendering & View Decoupling
+- **Adaptive Routing Presentation:** Built with VitePress, the Navbar and Sidebar have been rewritten from static mappings. Whenever categories are added or removed from `projects.json`, the VitePress compiler dynamically analyzes it and renders the UI perfectly, preventing data-to-UI discrepancies.
+- **Smart Markdown Folding & Stale Cleanup**: `generate-docs.js` iterates over categories, grouping items by subcategory. It also automatically purges projects that haven't been updated for a long time based on the `RECENCY_THRESHOLD_MONTHS` setting to maintain high project quality.
 
-- Frequent service anomalies due to popularity and overseas computing power restrictions
-- Gradually increased content moderation restrictions on the official website
-- AIP services have currently suspended recharge services
+### 4. Automation Pipeline
+- For hands-free, continuous discovery (e.g., avoiding rate-limit drops), you can utilize process daemon scripts like `scripts/loop-eval.js` which leverage continuous sleep loops. This achieves a permanent closed-loop operation of: **Discover -> Buffer -> AI Evaluate -> Static Page Build**, endlessly exploring the ocean of open source code.
 
-Alternative Solutions:
+---
 
-Since the model is completely free and open-source, many platforms have deployed deepseek's models. Similar services can be found on:
+## 🚀 Local Deployment & Running Guide
 
-- [Tencent Yuanbao](https://yuanbao.tencent.com/)
-- [MetaSo AI Search](https://metaso.cn/)
-- [Baidu AI Search](https://chat.baidu.com/)
+You are completely welcome to run this entire auto-expanding AI knowledge base framework locally! It is very simple to start:
 
-These platforms offer convenient free access to deepseek's models but inevitably add content moderation restrictions for compliance.  
+### 1. Environment & Setup
+A Node.js environment is required (v18.x or above is recommended).
+```bash
+git clone https://github.com/xxxily/hello-ai.git
+cd hello-ai
+npm install
+```
 
-To reduce moderation, consider using API services from major platforms. Current tests show most APIs deliver original deepseek outputs. Note this only reduces output moderation rather than eliminating it (except for self-hosted solutions, which remain costly for individuals). Recommended API services:
+### 2. Environment Variables Configuration
+Copy from the template:
+```bash
+cp .env.example .env
+```
+Open `.env` and adjust the core configurations:
+- **`GITHUB_TOKEN=`** `(Highly Recommended)`: Bypasses the strict rate limits applied to anonymous GitHub search API calls.
+- **`LLM_API_KEY=`**: Your target LLM API Key (used for analyzing and curating projects).
+  - *💡 Zero-Cost Prompt: If you are using a local LLM setup (e.g. Ollama via llama3), you can simply use `LLM_API_KEY=local-fallback`.*
+- **`LLM_PROVIDER=`**: Select a built-in provider preset (`openai`, `minimax`, `deepseek`, `ollama`). When omitted, auto-detected from `LLM_BASE_URL` or provider-specific API key env vars.
+- **`LLM_BASE_URL=`**: LLM endpoint (e.g. `https://api.openai.com/v1`, or local `http://127.0.0.1:11434/v1`).
+- **`LLM_MODEL=`**: Standard model identity to use (e.g. `gpt-4o-mini`, `MiniMax-M2.5`).
+- **`DISCOVER_BATCH_SIZE`** / **`EVALUATE_BATCH_SIZE`** / **`UPDATE_STATUS_BATCH_SIZE`**: Modify limits per pull from GitHub, per LLM prompt, and for status update batching.
+- **`LOOP_INTERVAL_SECONDS`**: Configure the base idle time interval between consecutive `ai:loop-eval` cycles (default: 60s).
+- **`MAX_PAGES_DEFAULT`**: Default max pages to explore per topic (default: 5).
+- **`MAX_PAGES_QUALITY`**: Max pages for high-quality topics (default: 20).
+- **`QUALITY_TOPIC_THRESHOLD`**: Score threshold for high-quality topics (default: 5).
+- **`AUTO_FETCH_DESC_STARS`**: Star threshold to proactively fetch missing descriptions (default: 1000).
+- **`BLOCKED_GITHUB_OWNERS_FILE`** / **`BLOCKED_REPO_TERMS_FILE`**: Optional local blocklist files for discovery/evaluation safety filters. Put one owner or term per line; `#` starts a comment. The default `data/local-blocklists/` path is ignored by git.
+- **`BLOCKED_GITHUB_OWNERS`** / **`BLOCKED_REPO_TERMS`**: Optional short inline comma-separated filters. Example terms: `spam,seo,adult,piracy,casino,proxy,scraper`.
+- **`RECENCY_THRESHOLD_MONTHS`**: Only projects updated within the last N months are kept during doc generation (default: 24, i.e., 2 years).
 
-- [302AI (API proxy provider with multi-vendor integration. Bind credit card for fee waiver)](https://partnershare.302.ai/LJMZAb)
-- [Volcano Engine (Fastest and most stable currently)](https://www.volcengine.com/experience/ark?utm_term=202502dsinvite&ac=DSASUQY5&rc=ISR6MFPG)
-- [SiliconFlow (Oversaturated market, free APIs mostly unusable)](https://cloud.siliconflow.cn/i/nhVU6aPT)
+#### Supported LLM Providers
 
-### [grok3](https://grok.com/) Rating: ⭐⭐⭐⭐⭐
+The evaluation engine supports any **OpenAI-compatible** LLM API. Built-in presets make it easy to switch:
 
-Reasons for Recommendation:
+| Provider | `LLM_PROVIDER` | Default Model | API Key Env |
+|----------|----------------|---------------|-------------|
+| [OpenAI](https://openai.com) | `openai` | `gpt-4o-mini` | `OPENAI_API_KEY` or `LLM_API_KEY` |
+| [MiniMax](https://www.minimaxi.com) | `minimax` | `MiniMax-M2.5` | `MINIMAX_API_KEY` or `LLM_API_KEY` |
+| [DeepSeek](https://deepseek.com) | `deepseek` | `deepseek-chat` | `DEEPSEEK_API_KEY` or `LLM_API_KEY` |
+| [Ollama](https://ollama.ai) (local) | `ollama` | `llama3` | N/A (uses `local-fallback`) |
 
-- Claims to be the most advanced AI model surpassing OpenAI and DeepSeek
-- Fewer content moderation restrictions with high intelligence (main reason for recommendation)
-- Stable performance with internet-connected deep search and organization features
+**Quick start with MiniMax:**
+```bash
+LLM_PROVIDER=minimax
+MINIMAX_API_KEY=your-key-here
+# Optionally pick a specific model:
+# LLM_MODEL=MiniMax-M2.7
+```
 
-### [chat.openai.com](https://chat.openai.com/) Rating: ⭐⭐⭐⭐⭐
+### 3. Run Automation Pipelines
+Choose how you want to execute scripts:
+- **Single Manual Execution**:
+  ```bash
+  npm run ai:discover-eval
+  ```
+- **Constant Background Daemon** (Continuous fetch & evaluate):
+  ```bash
+  npm run ai:loop-eval
+  ```
+- **Interactive TUI Daemon** (Recommended for manual param selection):
+  ```bash
+  npm run ai:loop-eval-tui
+  ```
+- **Incremental Status Check** (Background process to silently check/update GitHub star & health status for evaluated items):
+  ```bash
+  npm run ai:update-status
+  ```
+- **Re-Evaluate Active Projects** (Moves items back to Queue to catch up with latest sub-category mapping):
+  ```bash
+  npm run ai:re-evaluate-all
+  ```
+- **Consume Queue & Exit** (Strictly evaluates queue without pinging GitHub API to avoid rate-limits; auto-exits when empty):
+  ```bash
+  npm run ai:consume-queue
+  ```
 
-Reasons to Recommend:
+#### 💡 Advanced CLI Flags
+When running `npm run ai:discover-eval` or its variants, you can append the following flags:
+- `--sort-topic-by=quality|time`: 
+  - `quality`: Prioritize exploring topics with the highest quality score (based on already included projects).
+  - `time`: Prioritize exploring the least recently explored topics.
+- `--topic-order=asc|desc`: Sorting direction (default: Desc for Quality, Asc for Time).
+- `--updated-within-days=<n>`: Only enqueue discovered repositories pushed within the last `n` days; use `0` for no limit. `ai:loop-eval` defaults to `180` and accepts this flag to override it.
+- `--consume-only`: Evaluates local queue items only, skipping new GitHub searches.
+- `--resume`: Resumes discovery from the last saved topic and page.
+- `--update-only`: Mass updates existing projects without LLM evaluation.
+- `--init-topics`: (One-time) Re-initializes topic quality scores based on existing data in `projects.json`.
 
-- Free and unlimited use of the GPT-3.5 model
-- Official ChatGPT service provided by OpenAI
-- Lower registration threshold, making it significantly more accessible
-- Continuously refined for stable and smooth use
-- For a better experience, avoid domestic shell services
+### 4. Dynamic Pages Generation & Local Preview
+Once your AI has finished evaluating and saving into the core databank, preview the outcome locally!
+```bash
+# Iterates projects.json database, groups it into subcategories and auto-renders individual Markdown documents
+npm run ai:generate-docs
 
-### [gemini.google.com](https://gemini.google.com/) Rating: ⭐⭐⭐⭐⭐
+# Boot local VitePress web server (live reloading with newly tracked projects)
+npm run docs:dev
 
-Reasons to Recommend:
+# Prepend distribution artifacts for production site deployment (under docs folder)
+npm run docs:build
+```
 
-- Official AI service provided by Google
-- A potential rival to OpenAI in the AI sector
-- Gemini Ultra model is on par with or exceeds GPT-4
-- Gemini Ultra model currently free to try for two months
-- Unlimited free trial of Gemini pro model, intelligence comparable to GPT-3.5
+---
 
-### [coze.com](https://www.coze.com/) Rating: ⭐⭐⭐⭐⭐
+## 🌟 Explore AI Projects
 
-Reasons to Recommend:
+Please use the navigation bar or sidebar of this site to browse this oasis of open-source code meticulously curated for you by our AI agent.
+Our crawlers and scoring models regularly sweep GitHub for trending projects, keeping this directory fresh!
 
-- Supports the GPT-4 model ~~with unlimited use~~
-- Offers the highest support for the GPT-4(128K) model
-- Completely free at present, without strict registration requirements
-- Provides similar services to ChatGPT-plus users
-- Features such as plugins, knowledge bases, and networking are fully available
-- Can be easily integrated into mainstream foreign chat tools
-- `Provided by ByteDance's overseas team, ensuring service quality and stability`
-
-![coze](./home/img/coze.png)
-
-### [sora](https://openai.com/sora) Rating: ⭐⭐⭐⭐⭐
-
-Reasons to Recommend:
-
-- Currently the hottest text-generated video AI application by OpenAI
-- Capable of generating videos up to 60 seconds in length
-- The generated content is cohesive and realistic
-- Unmatched by any text-to-video AI applications currently on the market
-
-Additional Notes:
-
-- Not yet open to the general public
-- Approach it without alarmism, and maintain a rational attitude towards technological advancements
-- Keep an open and accepting attitude towards new things
-
-[Technical research report on Sora](https://openai.com/research/video-generation-models-as-world-simulators)
-
-## Other Related
-
-- Coolest AI tool LUMA AI: <https://lumalabs.ai/>
-- Most practical AI tool Gamma: <https://gamma.app/>
-- Best AI search engine Phind: <https://www.phind.com/>
-- Most promising AI vall-e-x: <https://www.microsoft.com/en-us/research>
-- Best AI learning tool Albus: <https://albus.org/zh/>
-- Most used AI tool Raycast AI: <https://www.raycast.com/>
-- Programmers' favorite AI tool Warp: <https://www.warp.dev/>
-- Most useful AI tool Notion: <https://www.notion.so/product/ai>
-- Best sounding AI tool Sono AI: <https://app.suno.ai/>
-- Best AI browser Arc: <https://arc.net/>
-- Most anticipated AI Sora: <https://openai.com/sora>
-
-Source: [https://www.youtube.com/watch?v=QKVOTpMU7c0](https://www.youtube.com/watch?v=QKVOTpMU7c0)
+📚 **Open Explore: [https://hello-ai.anzz.site/explore/](https://hello-ai.anzz.site/explore/)**
 
 ## Discussion Groups
 
@@ -144,11 +245,10 @@ Source: [https://www.youtube.com/watch?v=QKVOTpMU7c0](https://www.youtube.com/wa
 
 | Join Telegram Group | Join WeChat Group (Note: Join AI group) |
 | :----: | :----: |
-| <img src="https://cdn.jsdelivr.net/npm/hello-ai/assets/img/tg_qun.jpg" width="280"/> | <img src="https://cdn.jsdelivr.net/npm/hello-ai/assets/img/WeChat2.png" width=280 /> |
+| <img src="https://cdn.anzz.site/npm/hello-ai/assets/img/tg_qun.jpg" width="280"/> | <img src="https://cdn.anzz.site/npm/hello-ai/assets/img/WeChat2.png" width=280 /> |
 
 > Please specify your intent to join the WeChat group to avoid unwanted invitations and information harassment.  
 > Telegram group link: [https://t.me/auto_gpt_ai](https://t.me/auto_gpt_ai)  
-> TG_bot for conversing with GPT-4: [https://t.me/h5player_bot](https://t.me/h5player_bot)
 
 <p align="center">
   <a href="https://trackgit.com">
